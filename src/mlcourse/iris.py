@@ -25,7 +25,6 @@ dt_data = tree.export_graphviz(
     special_characters=True)
 
 graph = graphviz.Source(dt_data)
-graph.render('iris_tree')
 
 def main():
-    pass
+    graph.render('output')
