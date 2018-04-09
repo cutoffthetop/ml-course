@@ -15,6 +15,7 @@ setup(
     install_requires=[
         'keras',
         'matplotlib',
+        'graphviz',
         'numpy',
         'opencv-contrib-python',
         'pandas',
@@ -26,7 +27,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'mlcourse=mlcourse.app:main'
+            'mlcourse=mlcourse.tree:main'
         ]
     }
 )
