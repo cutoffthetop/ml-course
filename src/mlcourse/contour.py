@@ -28,7 +28,7 @@ for blob in blobs:
     [x, y, w, h] = cv2.boundingRect(blob)
 
     # cut out piece of image
-    cut = img[y:y+h, x:x+w]
+    cut = img[y:y + h, x:x + w]
 
     # extract color:
     clr = misc.calcAverageColor(cut)
@@ -48,11 +48,11 @@ labels = kmeans.fit_predict(features.reshape(-1, 1))
 # iterate through blobs
 for i, blob in enumerate(blobs):
     [x, y, w, h] = cv2.boundingRect(blob)
-    cv2.rectangle(img, (x, y), (x+w, y+h), colors[labels[i]], 2)
+    cv2.rectangle(img, (x, y), (x + w, y + h), colors[labels[i]], 2)
 
 
 # display the image
-cv2.imshow("blobs", img)
+cv2.imshow('blobs', img)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
