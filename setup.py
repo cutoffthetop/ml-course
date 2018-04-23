@@ -27,6 +27,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
+            'contour=mlcourse.contour:main',
             'iris=mlcourse.iris:main',
             'wine=mlcourse.wine:main'
         ]
