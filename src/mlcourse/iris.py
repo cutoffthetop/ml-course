@@ -1,30 +1,36 @@
 import numpy as np
+
 import graphviz
 import matplotlib.pyplot as plt
 from sklearn import datasets, tree
 
 iris = datasets.load_iris()
 
-x = iris.data
-y = iris.target
 
-dt = tree.DecisionTreeClassifier()
-dt = dt.fit(x, y)
+def tree():
+    x = iris.data
+    y = iris.target
+    dt = tree.DecisionTreeClassifier()
+    return dt.fit(x, y)
 
-obj = [4, 3, 1, 0]
-p = dt.predict([obj])
-print('this is ', p)
 
-dt_data = tree.export_graphviz(
-    dt,
-    out_file=None,
-    feature_names=iris.feature_names,
-    class_names=iris.target_names,
-    filled=True,
-    rounded=True,
-    special_characters=True)
+def graph():
+    dt_data = tree.export_graphviz(
+        tree(),
+        out_file=None,
+        feature_names=iris.feature_names,
+        class_names=iris.target_names,
+        filled=True,
+        rounded=True,
+        special_characters=True)
+    graph = graphviz.Source(dt_data)
+    graph.render('output')
 
-graph = graphviz.Source(dt_data)
+
+def predict(obj):
+    p = tree().predict([obj])
+    print('this is ', p)
+
 
 def main():
-    graph.render('output')
+    predict([4, 3, 1, 0])
