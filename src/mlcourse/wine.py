@@ -44,7 +44,7 @@ selector = model_selection.GridSearchCV(
 selector.fit(x_train, y_train)
 
 # output optimal parameter values
-print('best_socre', selector.best_score_)
+print('best_score', selector.best_score_)
 pprint(selector.best_params_)
 
 # calculate model accuracy
