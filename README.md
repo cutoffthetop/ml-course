@@ -11,7 +11,7 @@ execute
 ```
 bin/iris
 bin/wine
-bin/digits
-...
+bin/contour
+bin/pca
 ```
 

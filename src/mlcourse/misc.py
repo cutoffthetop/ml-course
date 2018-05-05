@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 
-def fillHoles(image, size=50):
+def fill_blanks(image, size=50):
     # extract contours
     im2, contours, hierarchy = cv2.findContours(
         image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -15,17 +15,17 @@ def fillHoles(image, size=50):
     return image
 
 
-def extractObjects(img):
+def extract_objects(img):
     # convert to gray
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # thresholding
     th, mask = cv2.threshold(
-        gray, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+        gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     mask = cv2.bitwise_not(mask)
 
-    # fill holes
-    mask = fillHoles(mask)
+    # fill blanks
+    mask = fill_blanks(mask)
 
     # process blobs:
     # extract contours
@@ -35,7 +35,7 @@ def extractObjects(img):
     return contours
 
 
-def calcAverageColor(img):
+def calc_average_color(img, blob):
     # resize
     w, h, d = img.shape
 
@@ -52,3 +52,21 @@ def calcAverageColor(img):
     maxColor = np.argmax(hist, axis=0)
 
     return maxColor
+
+
+def calc_density(img, blob):
+    w, h, d = img.shape
+    bounding_box_area = w * h
+    contour_area = cv2.contourArea(blob)
+    return contour_area / bounding_box_area
+
+
+def calc_hu_moments(img, blob):
+    moments = cv2.moments(blob)
+    return cv2.HuMoments(moments)[:, 0]
+
+
+def calc_circularity(img, blob):
+    contour_area = cv2.contourArea(blob)
+    perimeter = cv2.arcLength(blob, True)
+    return contour_area / (perimeter ** 2)
