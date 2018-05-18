@@ -13,5 +13,6 @@ bin/iris
 bin/wine
 bin/contour
 bin/pca
+bin/digits
+...
 ```
-

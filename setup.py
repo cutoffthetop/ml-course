@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='mlcourse',
-    version='0.1.0.dev0',
+    version='0.3.0.dev0',
     author='Nicolas Drebenstedt',
     packages=find_packages('src'),
     package_dir={'': 'src'},
@@ -19,6 +19,7 @@ setup(
         'numpy',
         'opencv-contrib-python',
         'pandas',
+        'keras',
         'scikit-learn',
         'scipy',
         'setuptools',
@@ -28,6 +29,8 @@ setup(
     entry_points={
         'console_scripts': [
             'contour=mlcourse.contour:main',
+            'neural=mlcourse.neural:main',
+            'digits=mlcourse.digits:main',
             'pca=mlcourse.contour:pca',
             'iris=mlcourse.iris:main',
             'wine=mlcourse.wine:main'
